@@ -46,6 +46,7 @@ It's also guaranteed that f(x, y) will fit in 32 bit signed integer if 1 <= x, y
  *     public int f(int x, int y);
  * };
  */
+  //binary search - O(xlogy)
 class Solution {
     public List<List<Integer>> findSolution(CustomFunction customfunction, int z) {
         List<List<Integer>> res = new ArrayList();
@@ -62,6 +63,28 @@ class Solution {
                 }else{
                     yright = mid-1;
                 }
+            }
+        }
+        return res;
+    }
+}
+
+//O(x+y)
+class Solution {
+    public List<List<Integer>> findSolution(CustomFunction customfunction, int z) {
+        List<List<Integer>> res = new ArrayList();
+        int x = 1;
+        int y = 1000;
+        while(x<=1000 && y>=1){
+            int val = customfunction.f(x,y);
+            if(val<z){
+                x++;
+            }else if(val>z){
+                y--;
+            }else{
+                res.add(Arrays.asList(x,y));
+                x++;
+                y--;
             }
         }
         return res;
