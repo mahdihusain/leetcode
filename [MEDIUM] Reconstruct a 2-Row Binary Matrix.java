@@ -59,17 +59,15 @@ class Solution {
                 }
             }
             if(upper<0 || lower<0){
-                return Arrays.asList();
+                return new ArrayList();
             }
         }
         
         if(upper!=0 || lower!=0) {
-            return Arrays.asList();
+            return new ArrayList();
         }
         
-        List<List<Integer>> list = new ArrayList<List<Integer>>();
-        list.add(Arrays.asList(result[0]));
-        list.add(Arrays.asList(result[1]));
-        return list;
+        return new ArrayList(Arrays.asList(result[0], result[1]));
     }
+    
 }
