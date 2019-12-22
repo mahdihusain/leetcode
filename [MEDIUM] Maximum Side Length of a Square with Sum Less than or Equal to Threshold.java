@@ -30,6 +30,7 @@ n == mat[i].length
 0 <= mat[i][j] <= 10000
 0 <= threshold <= 10^5
 
+//binary search and prefix sum
 class Solution {
     int m,n;
     
@@ -68,6 +69,32 @@ class Solution {
             }
         }
         return false;
+    }
+    
+}
+
+//sliding window
+class Solution {
+    int m,n;
+    
+    public int maxSideLength(int[][] mat, int threshold) {
+        m = mat.length;
+        n = mat[0].length;
+        int[][] sum = new int[m+1][n+1];
+        int len = 1;
+        int ans = 0;
+        
+        for(int i=1; i<m+1; i++) {
+            for(int j=1; j<n+1; j++) {
+                sum[i][j] = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1] + mat[i-1][j-1];
+                if(i>=len && j>=len && sum[i][j]-sum[i-len][j]-sum[i][j-len]+sum[i-len][j-len]<=threshold) {
+                    ans = len;
+                    len++;
+                }
+            }
+        }
+        
+        return ans;
     }
     
 }
