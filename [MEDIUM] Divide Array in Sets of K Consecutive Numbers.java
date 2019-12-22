@@ -66,6 +66,6 @@ class Solution {
             }
             n -= k*freq;
         }
-        return n==0;
+        return true;
     }
 }
